@@ -1,61 +1,63 @@
-import PostComponent from "./PostComponent";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  getPosts,
-  getUsers,
-  getComments,
-} from "../functions/postsAPIfunctions";
+import PostWidget from "./PostWidget";
+import SearchBar from "./SearchBar";
 
 export default function AllPosts() {
-  const [allPosts, setAllPosts] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
-  const [allComments, setAllComments] = useState([]);
+  const allPostDetailStore = useSelector(
+    (state) => state.posts.allPostsDetails
+  );
+  const [searchInput, setSearchInput] = useState("");
   const [allPostsDetails, setAllPostsDetails] = useState([]);
+  const [searchBy, setSearchby] = useState("title");
 
-  const getAllData = async () => {
-    setAllPosts(await getPosts());
-    setAllUsers(await getUsers());
-    setAllComments(await getComments());
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
   };
 
-  const mergedAll = () => {
-    let merged = [];
-    let userAutor = {};
-    let postComments = [];
-    for (let i = 0; i < allPosts.length; i++) {
-      userAutor = allUsers.find((user) => user.id === allPosts[i].userId);
-      postComments = allComments.filter(
-        (comment) => comment.postId === allPosts[i].id
+  const handleSelectChange = (e) => {
+    e.preventDefault();
+    setSearchby(e.target.value);
+  };
+
+  useEffect(() => {
+    setAllPostsDetails(allPostDetailStore);
+  }, [allPostDetailStore]);
+
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      let regex = new RegExp(`^${searchInput}`, "i");
+      setAllPostsDetails(
+        allPostDetailStore.filter((posts) => {
+          return posts[searchBy].match(regex);
+        })
       );
-      //console.log(postComments.length);
-      merged.push({
-        postId: allPosts[i].id,
-        title: allPosts[i].title,
-        body: allPosts[i].body,
-        username: userAutor?.username || "",
-        email: userAutor?.email || "",
-        comments: postComments,
-      });
+    } else {
+      setAllPostsDetails(allPostDetailStore);
     }
-    setAllPostsDetails(merged);
-  };
-
-  useEffect(() => {
-    getAllData();
-  }, []);
-
-  useEffect(() => {
-    mergedAll();
-  }, [allComments]);
+  }, [searchInput]);
 
   return (
-    <div className="w-11/12 border-2 border-black h-full mx-auto relative top-20">
-      <p>All posts:</p>
+    <div className="w-11/12 sm:w-10/12 md:w-2/3 border-2 border-black h-full mx-auto relative top-20">
+      <p className="font-semibold text-2xl">Posts</p>
+      <SearchBar
+        searchInput={searchInput}
+        handleInputChange={handleInputChange}
+        handleSelectChange={handleSelectChange}
+      />
       <div className="flex flex-wrap justify-center">
         {allPostsDetails.map((post) => (
-          <PostComponent key={post.postId} post={post} />
+          <PostWidget key={post.postId} post={post} />
         ))}
       </div>
     </div>
   );
 }
+
+/*
+ 
+
+         
+
+*/
