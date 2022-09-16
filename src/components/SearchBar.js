@@ -4,15 +4,15 @@ export default function SearchBar({
   searchInput,
 }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-1 mx-auto">
-      <div className="flex flex-row justify-between items-center rounded-md w-48">
+    <div className="flex flex-row gap-1 mx-auto my-2 w-min">
+      <div className="flex flex-row justify-between items-center rounded-md w-40">
         <label htmlFor="serchby" className="text-xs font-medium text-gray-700">
           Search by
         </label>
         <select
           id="serchby"
           name="serchby"
-          className="h-7 w-28 px-1 rounded-md border-2 focus:outline-none text-xs"
+          className="h-7 w-24 px-0.5 rounded-md border-2 focus:outline-none text-xs"
           defaultValue="title"
           onChange={handleSelectChange}
         >
@@ -21,15 +21,15 @@ export default function SearchBar({
           <option>email</option>
         </select>
       </div>
-      <div className="flex flex-row items-center rounded-md border-2 w-48 px-2 h-7">
-        <img src="/search.png" alt="search icon" className="h-5 w-5 " />
+      <div className="flex flex-row items-center rounded-md border-2 w-32 px-2 h-7">
         <input
-          className="ml-2 focus:outline-none w-full "
+          className="mr-2 text-xs focus:outline-none w-full "
           type="text"
-          placeholder=""
+          placeholder="search"
           onChange={handleInputChange}
           value={searchInput}
         />
+        <img src="/search.png" alt="search icon" className="h-5 w-5 " />
       </div>
     </div>
   );

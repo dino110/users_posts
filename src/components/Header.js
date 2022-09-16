@@ -68,7 +68,7 @@ export default function Header() {
 */
   return (
     <div className="w-full bg-blue-500 absolute ">
-      <div className="w-11/12 sm:w-10/12 md:w-2/3  h-16 flex items-center mx-auto px-2">
+      <div className="w-10/12 lg:w-8/12 h-16 flex items-center mx-auto px-5">
         <Link to="/posts/">
           <img src="/home.png" width="40" height="40" alt="home button" />
         </Link>

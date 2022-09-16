@@ -39,13 +39,14 @@ export default function AllPosts() {
   }, [searchInput]);
 
   return (
-    <div className="w-11/12 sm:w-10/12 md:w-2/3 border-2 border-black h-full mx-auto relative top-20">
-      <p className="font-semibold text-2xl">Posts</p>
+    <div className="w-10/12 lg:w-8/12 h-full mx-auto relative top-20 pb-4">
+      <p className="font-semibold text-2xl text-center">Posts</p>
       <SearchBar
         searchInput={searchInput}
         handleInputChange={handleInputChange}
         handleSelectChange={handleSelectChange}
       />
+
       <div className="flex flex-wrap justify-center">
         {allPostsDetails.map((post) => (
           <PostWidget key={post.postId} post={post} />
