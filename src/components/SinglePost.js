@@ -2,14 +2,13 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function PostPage() {
+export default function SinglePost() {
   let params = useParams();
   const allPostDetail = useSelector((state) => state.posts.allPostsDetails);
 
   const [postDetials, setPostDetails] = useState({});
 
   useEffect(() => {
-    //let post = ;
     setPostDetails(
       allPostDetail.find((post) => post.postId === +params.postId)
     );

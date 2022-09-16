@@ -7,7 +7,7 @@ import {
 
 import Header from "./components/Header";
 import AllPosts from "./components/AllPosts";
-import PostPage from "./components/PostPage";
+import SinglePost from "./components/SinglePost";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
 
       <Routes>
         <Route path="/posts" element={<AllPosts />} />
-        <Route path="/post/:postId" element={<PostPage />} />
+        <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/" element={<Navigate to="/posts" />} />
       </Routes>
     </Router>
@@ -24,10 +24,3 @@ function App() {
 }
 
 export default App;
-
-/* 
-<Routes>
-        <Route path="/home" element={<AllPosts />} />
-        <Route path="/" element={<AllPosts />} />
-      </Routes>
-*/
