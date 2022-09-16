@@ -1,9 +1,9 @@
 export const mergedAll = (allPosts, allUsers, allComments) => {
   let merged = [];
-  let userAutor = {};
+  let postAuthor = {};
   let postComments = [];
   for (let i = 0; i < allPosts.length; i++) {
-    userAutor = allUsers.find((user) => user.id === allPosts[i].userId);
+    postAuthor = allUsers.find((user) => user.id === allPosts[i].userId);
     postComments = allComments.filter(
       (comment) => comment.postId === allPosts[i].id
     );
@@ -11,8 +11,8 @@ export const mergedAll = (allPosts, allUsers, allComments) => {
       postId: allPosts[i].id,
       title: allPosts[i].title,
       body: allPosts[i].body,
-      username: userAutor?.username || "unknown",
-      email: userAutor?.email || "",
+      username: postAuthor?.username || "unknown",
+      email: postAuthor?.email || "",
       comments: postComments,
     });
   }
