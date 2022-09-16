@@ -55,10 +55,3 @@ export default function AllPosts() {
     </div>
   );
 }
-
-/*
- 
-
-         
-
-*/
