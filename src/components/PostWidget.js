@@ -17,7 +17,7 @@ export default function PostComponent({ post }) {
           </p>
           <p>
             comments:
-            <span className="font-bold ml-1">({post?.comments?.length})</span>
+            <span className=" ml-1">({post?.comments?.length || "NA"})</span>
           </p>
         </div>
       </div>
