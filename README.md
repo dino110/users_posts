@@ -1,3 +1,8 @@
+Simple web application that displays user posts and associated comments. Created with React, Redux, Tailwind.
+
+Used https://jsonplaceholder.typicode.com/ for data.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
